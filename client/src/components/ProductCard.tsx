@@ -3,12 +3,13 @@ import Link from "next/link";
 import { FaShoppingCart } from "react-icons/fa";
 
 interface Product {
-  id: number;
+  id: string;
   name: string;
   description: string;
   price: number;
   image: string;
   quantity: number;
+  fixedDiscount: number;
   variableDiscount: number;
 }
 
@@ -34,46 +35,6 @@ export default function ProductCard({ product }: ProductCardProps) {
   };
 
   return (
-    // <div className="bg-white p-4 rounded-lg shadow-md">
-    //   <img
-    //     src={product.image}
-    //     alt={product.name}
-    //     className="h-48 w-full object-cover mb-4 rounded"
-    //   />
-    //   <h2 className="text-lg font-semibold">{product.name}</h2>
-    //   <p className="text-gray-700">${product.price.toFixed(2)}</p>
-    //   <div className="mt-4 flex justify-between items-center">
-    //     {currentQuantity > 0 ? (
-    //       <div className="flex items-center space-x-2">
-    //         <button
-    //           onClick={() => handleQuantityChange(currentQuantity - 1)}
-    //           disabled={currentQuantity <= 0}
-    //           className="bg-gray-300 text-gray-800 px-3 py-1 rounded hover:bg-gray-400"
-    //         >
-    //           -
-    //         </button>
-    //         <span className="text-gray-700">{currentQuantity}</span>
-    //         <button
-    //           onClick={() => handleQuantityChange(currentQuantity + 1)}
-    //           className="bg-gray-300 text-gray-800 px-3 py-1 rounded hover:bg-gray-400"
-    //         >
-    //           +
-    //         </button>
-    //       </div>
-    //     ) : (
-    //       <button
-    //         onClick={handleAddToCart}
-    //         className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-    //       >
-    //         Add to Cart
-    //       </button>
-    //     )}
-    //     <Link href={`/product/${product.id}`}>
-    //       <div className="text-blue-500 hover:underline">View Details</div>
-    //     </Link>
-    //   </div>
-    // </div>
-
     <div className="relative m-10 flex w-full max-w-xs flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md">
       <div className="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl">
         <img className="object-cover" src={product.image} alt={product.name} />
@@ -92,8 +53,8 @@ export default function ProductCard({ product }: ProductCardProps) {
             <span className="text-3xl font-bold text-slate-900">
               ${product.price}
             </span>
-            <span className="text-sm ml-2 text-slate-900 line-through">
-              $699
+            <span className="text-sm ml-2 text-slate-700 line-through">
+              $1599
             </span>
           </p>
         </div>

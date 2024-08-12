@@ -20,7 +20,7 @@ export default function Navbar() {
           <input
             type="text"
             placeholder="Search for products..."
-            className="w-full p-2 rounded-l-md border-none focus:outline-none"
+            className="w-full p-2 rounded-l-md text-gray-600 border-none focus:outline-none"
           />
           <button className="bg-yellow-500 p-2 rounded-r-md text-white hover:bg-yellow-600">
             <FaSearch />

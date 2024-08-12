@@ -1,12 +1,14 @@
 import { createContext, useContext, useState, ReactNode } from "react";
 
 interface Product {
-  id: number;
+  id: string;
   name: string;
   description: string;
   price: number;
   image: string;
   quantity: number;
+  fixedDiscount: number;
+  variableDiscount: number;
 }
 
 interface CartItem extends Product {
@@ -16,8 +18,8 @@ interface CartItem extends Product {
 interface CartContextProps {
   cartItems: CartItem[];
   addToCart: (product: Product) => void;
-  removeFromCart: (productId: number) => void;
-  updateQuantity: (productId: number, quantity: number) => void;
+  removeFromCart: (productId: string) => void;
+  updateQuantity: (productId: string, quantity: number) => void;
 }
 
 const CartContext = createContext<CartContextProps | undefined>(undefined);
@@ -52,13 +54,13 @@ export const CartProvider = ({ children }: CartProviderProps) => {
     });
   };
 
-  const removeFromCart = (productId: number) => {
+  const removeFromCart = (productId: string) => {
     setCartItems((prevItems) =>
       prevItems.filter((item) => item.id !== productId)
     );
   };
 
-  const updateQuantity = (productId: number, quantity: number) => {
+  const updateQuantity = (productId: string, quantity: number) => {
     setCartItems((prevItems) =>
       prevItems.map((item) =>
         item.id === productId ? { ...item, quantity } : item
