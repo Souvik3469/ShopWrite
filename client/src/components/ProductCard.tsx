@@ -1,0 +1,129 @@
+import { useCart } from "@/context/CartContext";
+import Link from "next/link";
+import { FaShoppingCart } from "react-icons/fa";
+
+interface Product {
+  id: number;
+  name: string;
+  description: string;
+  price: number;
+  image: string;
+  quantity: number;
+  variableDiscount: number;
+}
+
+interface ProductCardProps {
+  product: Product;
+}
+
+export default function ProductCard({ product }: ProductCardProps) {
+  const { addToCart, updateQuantity, cartItems } = useCart();
+
+  const cartItem = cartItems.find((item) => item.id === product.id);
+  const currentQuantity = cartItem?.quantity || 0;
+
+  const handleAddToCart = () => {
+    addToCart(product);
+  };
+
+  const handleQuantityChange = (quantity: number) => {
+    if (quantity <= 0) {
+      updateQuantity(product.id, 0);
+    }
+    updateQuantity(product.id, quantity);
+  };
+
+  return (
+    // <div className="bg-white p-4 rounded-lg shadow-md">
+    //   <img
+    //     src={product.image}
+    //     alt={product.name}
+    //     className="h-48 w-full object-cover mb-4 rounded"
+    //   />
+    //   <h2 className="text-lg font-semibold">{product.name}</h2>
+    //   <p className="text-gray-700">${product.price.toFixed(2)}</p>
+    //   <div className="mt-4 flex justify-between items-center">
+    //     {currentQuantity > 0 ? (
+    //       <div className="flex items-center space-x-2">
+    //         <button
+    //           onClick={() => handleQuantityChange(currentQuantity - 1)}
+    //           disabled={currentQuantity <= 0}
+    //           className="bg-gray-300 text-gray-800 px-3 py-1 rounded hover:bg-gray-400"
+    //         >
+    //           -
+    //         </button>
+    //         <span className="text-gray-700">{currentQuantity}</span>
+    //         <button
+    //           onClick={() => handleQuantityChange(currentQuantity + 1)}
+    //           className="bg-gray-300 text-gray-800 px-3 py-1 rounded hover:bg-gray-400"
+    //         >
+    //           +
+    //         </button>
+    //       </div>
+    //     ) : (
+    //       <button
+    //         onClick={handleAddToCart}
+    //         className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+    //       >
+    //         Add to Cart
+    //       </button>
+    //     )}
+    //     <Link href={`/product/${product.id}`}>
+    //       <div className="text-blue-500 hover:underline">View Details</div>
+    //     </Link>
+    //   </div>
+    // </div>
+
+    <div className="relative m-10 flex w-full max-w-xs flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md">
+      <div className="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl">
+        <img className="object-cover" src={product.image} alt={product.name} />
+        <span className="absolute top-0 left-0 m-2 rounded-full bg-black px-2 text-center text-sm font-medium text-white">
+          {product.variableDiscount}% OFF
+        </span>
+      </div>
+      <div className="mt-4 px-5 pb-5">
+        <Link href={`/product/${product.id}`}>
+          <h5 className="text-xl tracking-tight text-slate-900">
+            {product.name}
+          </h5>
+        </Link>
+        <div className="mt-2 mb-5 flex items-center justify-between">
+          <p>
+            <span className="text-3xl font-bold text-slate-900">
+              ${product.price}
+            </span>
+            <span className="text-sm ml-2 text-slate-900 line-through">
+              $699
+            </span>
+          </p>
+        </div>
+        {currentQuantity > 0 ? (
+          <div className="flex items-center space-x-2">
+            <button
+              onClick={() => handleQuantityChange(currentQuantity - 1)}
+              disabled={currentQuantity <= 0}
+              className="bg-gray-300 text-gray-800 px-3 py-1 rounded hover:bg-gray-400"
+            >
+              -
+            </button>
+            <span className="text-gray-700">{currentQuantity}</span>
+            <button
+              onClick={() => handleQuantityChange(currentQuantity + 1)}
+              className="bg-gray-300 text-gray-800 px-3 py-1 rounded hover:bg-gray-400"
+            >
+              +
+            </button>
+          </div>
+        ) : (
+          <button
+            onClick={handleAddToCart}
+            className="flex items-center justify-center rounded-md bg-slate-900 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-gray-700 hover:cursor-pointer focus:outline-none focus:ring-4 focus:ring-blue-300"
+          >
+            <FaShoppingCart className="text-xl mx-2" />
+            Add to cart
+          </button>
+        )}
+      </div>
+    </div>
+  );
+}
