@@ -24,44 +24,6 @@ export default function CartPage() {
   const total = subtotal - totalFixedDiscount - totalVariableDiscount;
 
   return (
-    // <div className="container mx-auto p-4">
-    //   <h1 className="text-2xl font-bold mb-4">Shopping Cart</h1>
-    //   {cartItems.length > 0 ? (
-    //     <>
-    //       <div className="space-y-4">
-    //         {cartItems.map((item) => (
-    //           <CartItem
-    //             key={item.id}
-    //             id={item.id}
-    //             name={item.name}
-    //             image={item.image}
-    //             price={item.price}
-    //             quantity={item.quantity}
-    //             fixedDiscount={item.fixedDiscount}
-    //             variableDiscount={item.variableDiscount}
-    //             updateQuantity={updateQuantity}
-    //             removeFromCart={removeFromCart}
-    //           />
-    //         ))}
-    //       </div>
-    //       <div className="mt-8 p-4 bg-white rounded-lg shadow-md">
-    //         <h2 className="text-xl font-semibold">Cart Summary</h2>
-    //         <p className="mt-2">Subtotal: ${subtotal.toFixed(2)}</p>
-    //         <p>Fixed Discount: -${totalFixedDiscount.toFixed(2)}</p>
-    //         <p>Variable Discount: -${totalVariableDiscount.toFixed(2)}</p>
-    //         <p className="text-lg font-bold">Total: ${total.toFixed(2)}</p>
-    //         <Link href={"/checkout"}>
-    //           <button className="mt-4 bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">
-    //             Proceed to Checkout
-    //           </button>
-    //         </Link>
-    //       </div>
-    //     </>
-    //   ) : (
-    //     <p>Your cart is empty.</p>
-    //   )}
-    // </div>
-
     <section className=" relative z-10 after:contents-[''] after:absolute after:z-0 after:h-full xl:after:w-1/3 after:top-0 after:right-0 after:bg-gray-50">
       <div className="w-full max-w-7xl px-4 md:px-5 lg-6 mx-auto relative z-10">
         {cartItems.length > 0 ? (

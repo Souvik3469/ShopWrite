@@ -29,51 +29,13 @@ export default function CartItem({
   const VariableDiscount = variableDiscount * 0.01 * total;
 
   return (
-    // <div className="flex justify-between items-center bg-white p-4 rounded-lg shadow-md">
-    //   <img src={image} alt={name} className="h-20 w-20 object-cover rounded" />
-    //   <div className="flex-1 ml-4">
-    //     <h2 className="text-lg font-semibold">{name}</h2>
-    //     <p className="text-gray-700">
-    //       ${price.toFixed(2)}
-    //       {variableDiscount && (
-    //         <span className="text-red-500"> (-{variableDiscount}%)</span>
-    //       )}
-    //     </p>
-    //     <p className="text-gray-500">Fixed Discount: ${fixedDiscount}</p>
-    //   </div>
-    //   <div className="flex items-center">
-    //     <button
-    //       onClick={() => updateQuantity(id, quantity - 1)}
-    //       disabled={quantity <= 1}
-    //       className="px-2 py-1 bg-gray-300 text-gray-700 rounded"
-    //     >
-    //       -
-    //     </button>
-    //     <input
-    //       type="number"
-    //       value={quantity}
-    //       onChange={(e) => updateQuantity(id, parseInt(e.target.value))}
-    //       className="mx-2 w-12 text-center border border-gray-300 rounded"
-    //       min="1"
-    //     />
-    //     <button
-    //       onClick={() => updateQuantity(id, quantity + 1)}
-    //       className="px-2 py-1 bg-gray-300 text-gray-700 rounded"
-    //     >
-    //       +
-    //     </button>
-    //   </div>
-    //   <button
-    //     onClick={() => removeFromCart(id)}
-    //     className="ml-4 text-red-600 hover:text-red-800"
-    //   >
-    //     Remove
-    //   </button>
-    // </div>
-
     <div className="flex flex-col min-[500px]:flex-row min-[500px]:items-center gap-5 py-6 border-b border-gray-200 group">
       <div className="w-full md:max-w-[126px]">
-        <img src={image} alt={name} className="mx-auto rounded-xl" />
+        <img
+          src={image}
+          alt={name}
+          className="mx-auto rounded-xl transition-transform duration-300 ease-in-out transform hover:scale-110"
+        />
       </div>
       <div className="grid grid-cols-1 md:grid-cols-4 w-full">
         <div className="md:col-span-2">
